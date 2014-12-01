@@ -122,12 +122,14 @@ public class BonitaStarter {
 			logger.error("Directory {} does not exist! Terminating..", sFStackId);
 			System.exit(-1);
 		}
+		// check not possible because of smartfix behaviour
+		/*
 		File successFile = new File(prop.getProperty("SmartFixExchangePath") + File.separator + sFStackId
 				+ ".sf_export_finished");
 		if (!successFile.exists()) {
 			logger.error("File {}.sf_export_finished does not exist! Terminating..", sFStackId);
 			System.exit(-1);
-		}
+		}*/
 	
 
 		
