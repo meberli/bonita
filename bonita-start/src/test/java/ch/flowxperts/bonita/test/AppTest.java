@@ -1,6 +1,7 @@
 package ch.flowxperts.bonita.test;
 
 import java.io.File;
+import java.net.URL;
 
 import ch.flowxperts.tools.TiffToPdf;
 import junit.framework.Test;
@@ -35,12 +36,17 @@ public class AppTest
     public void testPDF()
     {
 		//tiff to pfdf conversion testhh
-		File f = new File("C:/temp/out.pdf");
+    	
+		File f = new File("out.pdf");
 		if (f.exists())
 			f.delete();
 
-		TiffToPdf ttp = new TiffToPdf("C:/temp/out.pdf");
-		File dir = new File("C:/temp/testdata");
+		
+		TiffToPdf ttp = new TiffToPdf("out.pdf");
+		
+		URL url = Thread.currentThread().getContextClassLoader().getResource("testdata");
+		File dir = new File(url.getPath());
+		//File dir = new File("testdata");
 		  File[] directoryListing = dir.listFiles();
 		  if (directoryListing != null) {
 		    for (File child : directoryListing) {
