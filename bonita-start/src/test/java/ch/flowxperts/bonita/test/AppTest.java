@@ -37,12 +37,12 @@ public class AppTest
     {
 		//tiff to pfdf conversion testhh
     	
-		File f = new File("target/temp/test.pdf");
+		File f = new File("target/test.pdf");
 		if (f.exists())
 			f.delete();
 
 		
-		TiffToPdf ttp = new TiffToPdf("target/temp/test.pdf");
+		TiffToPdf ttp = new TiffToPdf("target/test.pdf");
 		
 		URL url = Thread.currentThread().getContextClassLoader().getResource("testdata");
 		File dir = new File(url.getPath());
