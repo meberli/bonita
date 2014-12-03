@@ -4,6 +4,9 @@
 	<groupId>ch.flowxperts.bonita</groupId>
 	<artifactId>bonita-start</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
@@ -112,7 +115,7 @@
   <artifactId>maven-assembly-plugin</artifactId>
   <configuration>
     <descriptor>src/assembly/bin.xml</descriptor>
-    <finalName>bonita-starter-${pom.version}</finalName>
+    <finalName>bonita-starter-${project.version}</finalName>
   </configuration>
   <executions>
     <execution>
