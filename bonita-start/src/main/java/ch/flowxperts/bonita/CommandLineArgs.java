@@ -16,6 +16,9 @@ public class CommandLineArgs {
 	 
 	@Parameter(names = "-filename", description = "Full Path to the file to import")
 	public String filename;
+	
+	@Parameter(names = "-documentname", description = "Variable name of the document in Bonita BPM. Default is 'incommingDocument'")
+	public String docname;
 
 	@Parameter(names = "-stackId", description = "StackID of SmartFix Stack to import")
 	public String stackId;  

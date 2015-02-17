@@ -104,6 +104,9 @@ public class BonitaStarter {
 		// read command line params
 		CommandLineArgs cmdLineArgs = new CommandLineArgs();
 		JCommander jComm = new JCommander(cmdLineArgs, args);
+		String bonitaDocumentName = "incomingDocument";
+		if (cmdLineArgs.docname != null) // document variable name supplied
+			bonitaDocumentName = cmdLineArgs.docname;
 
 		List<BonitaData> bonitaDataList = new ArrayList<BonitaData>();
 		if (cmdLineArgs.stackId != null) // smartfix case
@@ -118,10 +121,9 @@ public class BonitaStarter {
 			data.documents = new HashMap<String, Object>();
 			data.variables = new HashMap<String, Object>();
 			
-			data.variables.put("sfDocId",  "123");
 			data.documents.put("invoiceReference", "http://www.flowxperts.ch");
-			data.documents.put("sfDocument", loadFile(cmdLineArgs.filename));
-			data.documents.put("Document", cmdLineArgs.filename);
+			data.documents.put(bonitaDocumentName, loadFile(cmdLineArgs.filename));
+			data.documentFilename = cmdLineArgs.filename;
 			bonitaDataList.add(data);
 
 		} else {
@@ -178,21 +180,15 @@ public class BonitaStarter {
 						if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 							Element documentElement = (Element) nNode;
 							String documentFilename = getFilenameForSFDocument(documentElement, sFStackPath);
-							
-							Map<String, Object> firstInvoice = new HashMap<String, Object>();
-							firstInvoice.put("sfDocId",  documentElement.getAttribute("DocID"));
-							firstInvoice.put(
+							BonitaData bd = new BonitaData();
+							bd.variables.put("sfDocId",  documentElement.getAttribute("DocID"));
+							bd.variables.put("sfStackId",  sFStackId);
+							bd.variables.put(
 									"sfXml",
 									readFile(sFStackPath + File.separator
 											+ sfXMLFileName, StandardCharsets.UTF_8));
-
-							Map<String, Object> firstInvoiceDocument = new HashMap<String, Object>();
-							firstInvoiceDocument.put("invoiceReference", "http://www.flowxperts.ch");
-							firstInvoiceDocument.put("sfDocument", loadFile(documentFilename));
-							
-							BonitaData bd = new BonitaData();
-							bd.variables = firstInvoice;
-							bd.documents = firstInvoiceDocument;
+							bd.documents.put("invoiceReference", "http://www.flowxperts.ch");
+							bd.documents.put("sfDocument", loadFile(documentFilename));														
 							bd.documentFilename = documentFilename;
 							bonitaDataList.add(bd);
 						}
