@@ -276,7 +276,7 @@ public class BonitaStarter {
 		
 		int i = 1;
 		for (BonitaData bonitaData : bonitaDataList) {
-			logger.info("Bonita process for document {} successfully started. (filename = {})", i, bonitaData.documentFilename);
+			
 			boolean success = createCaseWithDocument(	bonitaData.variables, bonitaData.documents, bonitaData.documentFilename);
 			if (success)
 				logger.info("Bonita process for document {} successfully started. (filename = {})", i, bonitaData.documentFilename);
