@@ -181,6 +181,8 @@ public class BonitaStarter {
 							Element documentElement = (Element) nNode;
 							String documentFilename = getFilenameForSFDocument(documentElement, sFStackPath);
 							BonitaData bd = new BonitaData();
+							bd.documents = new HashMap<String, Object>();
+							bd.variables = new HashMap<String, Object>();
 							bd.variables.put("sfDocId",  documentElement.getAttribute("DocID"));
 							bd.variables.put("sfStackId",  sFStackId);
 							bd.variables.put(
