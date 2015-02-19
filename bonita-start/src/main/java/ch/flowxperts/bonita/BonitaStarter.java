@@ -187,8 +187,7 @@ public class BonitaStarter {
 							bd.variables.put("sfStackId",  sFStackId);
 							bd.variables.put(
 									"sfXml",
-									readFile(sFStackPath + File.separator
-											+ sfXMLFileName, StandardCharsets.UTF_8));
+									readFile(sfXMLFileName, StandardCharsets.UTF_8));
 							bd.documents.put("invoiceReference", "http://www.flowxperts.ch");
 							bd.documents.put("sfDocument", loadFile(documentFilename));														
 							bd.documentFilename = documentFilename;
